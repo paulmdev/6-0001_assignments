@@ -78,7 +78,7 @@ def get_guessed_word(secret_word, letters_guessed):
 
     for letter in secret_word:
         if letter not in letters_guessed:
-            secret_word.replace(letter, "_ ")
+            secret_word = secret_word.replace(letter, "_ ")
 
     return secret_word
 
