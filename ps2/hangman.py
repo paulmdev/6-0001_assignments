@@ -90,7 +90,13 @@ def get_available_letters(letters_guessed):
       yet been guessed.
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+
+    available_letters = string.ascii_lowercase
+
+    for letter in letters_guessed:
+        available_letters = available_letters.replace(letter, '')
+
+    return available_letters
 
 
 def hangman(secret_word):
