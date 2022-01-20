@@ -149,7 +149,7 @@ def hangman(secret_word):
 
             print("-" * 13)
             continue
-        elif not letter.isalfa() and warnings_remaining == 0:
+        elif not letter.isalpha() and warnings_remaining == 0:
             print(f"Not a letter! You have {warnings_remaining} warnings: ",
                   get_guessed_word(secret_word, letters_guessed))
 
