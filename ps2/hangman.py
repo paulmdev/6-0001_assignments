@@ -196,6 +196,7 @@ def hangman(secret_word):
             print("Congratulations, you won!")
             print("Your total score for this game is:",
                   guess_remaining * len(letters_guessed))
+            break
     else:
         print("I'm sorry, you ran out of guesses.")
         print("The word was:", secret_word)
