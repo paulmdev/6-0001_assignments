@@ -17,3 +17,8 @@ class HangmanTesting(unittest.TestCase):
 
         self.assertEqual("_ pp_ e", get_guessed_word(
             secret_word, letters_guessed))
+
+    def test_available_letters(self):
+        letters_guessed = ['e', 'i', 'k', 'p', 'r', 's']
+        self.assertEqual("abcdfghjlmnoqtuvwxyz",
+                         get_available_letters(letters_guessed))
