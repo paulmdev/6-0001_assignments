@@ -132,10 +132,11 @@ def hangman(secret_word):
     print("-" * 13)
 
     guess = 6
+    warnings = 3
     letters_guessed = []
 
     while guess > 0:
-        print(f"You have {guess} guesses left")
+        print(f"You have {guess} guesses left.")
         print("Available letters:", get_available_letters(letters_guessed))
 
         letter = input("Please guess a letter: ").lower()
@@ -182,7 +183,12 @@ def hangman(secret_word):
         else:
             print("Oops! That letter is not in my word:",
                   get_guessed_word(secret_word, letters_guessed))
-            guess -= 1
+
+            # If the letter is a vowel, the user loses two guesses.
+            if letter in "aeiou":
+                guess -= 2
+            else:
+                guess -= 1
 
         print("-" * 13)
 
