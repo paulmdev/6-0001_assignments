@@ -192,6 +192,14 @@ def hangman(secret_word):
 
         print("-" * 13)
 
+        if secret_word == get_guessed_word(secret_word, letters_guessed):
+            print("Congratulations, you won!")
+            print("Your total score for this game is:",
+                  guess * len(letters_guessed))
+    else:
+        print("I'm sorry, you ran out of guesses.")
+        print("The word was:", secret_word)
+
 
 # When you've completed your hangman function, scroll down to the bottom
 # of the file and uncomment the first two lines to test
