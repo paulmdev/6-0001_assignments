@@ -35,4 +35,4 @@ class HangmanMatchGaps(unittest.TestCase):
         self.assertTrue(match_with_gaps("a_ _ le", "apple"))
 
     def test_not_match_apples(self):
-        self.assertFalse("a_ ple", "apple")
+        self.assertFalse(match_with_gaps("a_ ple", "apple"))
