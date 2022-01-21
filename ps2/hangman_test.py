@@ -1,6 +1,6 @@
 import unittest
 
-from hangman import get_available_letters, get_guessed_word, is_word_guessed, match_with_gaps, show_possible_matches
+from hangman import get_available_letters, get_guessed_word, is_word_guessed, load_words, match_with_gaps, show_possible_matches
 
 
 class HangmanProblem3(unittest.TestCase):
@@ -40,14 +40,21 @@ class HangmanMatchGaps(unittest.TestCase):
 
 class HangmanShowPossibleMatches(unittest.TestCase):
     def test_possible_matches_1(self):
+        wordlist = load_words()
+
         possible_matches = ['tact', 'tart', 'taut', 'teat', 'tent', 'test', 'text', 'that',
                             'tilt', 'tint', 'toot', 'tort', 'tout', 'trot', 'tuft', 'twit']
-        self.assertListEqual(show_possible_matches("t_ _ t"), possible_matches)
+        self.assertListEqual(show_possible_matches(
+            "t_ _ t", wordlist), possible_matches)
 
     def test_possible_matches_2(self):
+        wordlist = load_words()
+
         possible_matches = ["ample", "amply"]
         self.assertListEqual(show_possible_matches(
-            "a_ pl_ "), possible_matches)
+            "a_ pl_ ", wordlist), possible_matches)
 
     def test_no_matches(self):
-        self.assertListEqual(show_possible_matches("abbbb_ ", []))
+        wordlist = load_words()
+
+        self.assertListEqual(show_possible_matches("abbbb_ ", wordlist), [])
