@@ -211,7 +211,7 @@ def hangman(secret_word):
 # -----------------------------------
 
 
-def match_with_gaps(my_word, other_word):
+def match_with_gaps(my_word: str, other_word: str):
     '''
     my_word: string with _ characters, current guess of secret word
     other_word: string, regular English word
@@ -221,7 +221,23 @@ def match_with_gaps(my_word, other_word):
         False otherwise: 
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    my_word = my_word.strip().replace(" ", "")
+
+    if len(my_word) != len(other_word):
+        return False
+
+    for my_letter, other_letter in zip(my_word, other_word):
+        if my_letter == "_":
+            # If the current letter in other_word is present in my word.
+            # When a letter is guessed, your code reveals all the positions at which
+            # that letter occurs in the secret word. Therefore, the hidden letter (_ ) ​cannot be ​one
+            # of the letters in the word that has already been revealed
+            if other_letter in my_word:
+                return False
+        elif my_letter != other_letter:
+            return False
+
+    return True
 
 
 def show_possible_matches(my_word):
