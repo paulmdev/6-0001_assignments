@@ -240,7 +240,7 @@ def match_with_gaps(my_word: str, other_word: str):
     return True
 
 
-def show_possible_matches(my_word):
+def show_possible_matches(my_word, wordlist):
     '''
     my_word: string with _ characters, current guess of secret word
     returns: nothing, but should print out every word in wordlist that matches my_word
@@ -251,7 +251,8 @@ def show_possible_matches(my_word):
 
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+
+    return list(filter(lambda word: match_with_gaps(my_word, other_word=word), wordlist))
 
 
 def hangman_with_hints(secret_word):
