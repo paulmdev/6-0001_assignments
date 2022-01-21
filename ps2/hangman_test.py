@@ -1,9 +1,9 @@
 import unittest
 
-from hangman import get_available_letters, get_guessed_word, is_word_guessed
+from hangman import get_available_letters, get_guessed_word, is_word_guessed, match_with_gaps
 
 
-class HangmanTesting(unittest.TestCase):
+class HangmanProblem3(unittest.TestCase):
     def test_the_word_is_not_guessed(self):
         secret_word = "apple"
         letters_guessed = ['e', 'i', 'k', 'p', 'r', 's']
@@ -22,3 +22,17 @@ class HangmanTesting(unittest.TestCase):
         letters_guessed = ['e', 'i', 'k', 'p', 'r', 's']
         self.assertEqual("abcdfghjlmnoqtuvwxyz",
                          get_available_letters(letters_guessed))
+
+
+class HangmanMatchGaps(unittest.TestCase):
+    def test_not_match_tact(self):
+        self.assertFalse(match_with_gaps("te_ t", "tact"))
+
+    def test_not_match_banana(self):
+        self.assertFalse(match_with_gaps("a_ _ le", "banana"))
+
+    def test_match_apple(self):
+        self.assertTrue(match_with_gaps("a_ _ le", "apple"))
+
+    def test_not_match_apples(self):
+        self.assertFalse("a_ ple", "apple")
