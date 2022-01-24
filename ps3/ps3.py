@@ -197,9 +197,12 @@ def update_hand(hand, word):
 
 
 def is_word_in_hand(word, hand):
+    hand = hand.copy()
+
     for letter in word.lower():
         if hand.get(letter, 0) <= 0:
             return False
+        hand[letter] = hand[letter] - 1
     return True
 
 
