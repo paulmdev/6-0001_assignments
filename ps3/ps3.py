@@ -195,6 +195,14 @@ def update_hand(hand, word):
 
     return result
 
+
+def is_word_in_hand(word, hand):
+    for letter in word.lower():
+        if hand.get(letter, 0) <= 0:
+            return False
+    return True
+
+
 #
 # Problem #3: Test word validity
 #
@@ -212,7 +220,10 @@ def is_valid_word(word, hand, word_list):
     returns: boolean
     """
 
-    pass  # TO DO... Remove this line when you implement this function
+    is_word_in_word_list = word.lower() in word_list
+
+    return is_word_in_word_list and is_word_in_hand(word, hand)
+
 
 #
 # Problem #5: Playing a hand
