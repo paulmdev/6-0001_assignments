@@ -7,6 +7,7 @@
 # Collaborators : <your collaborators>
 # Time spent    : <total time>
 
+from cgitb import reset
 import math
 import random
 import string
@@ -183,7 +184,16 @@ def update_hand(hand, word):
     returns: dictionary (string -> int)
     """
 
-    pass  # TO DO... Remove this line when you implement this function
+    word = word.lower()
+
+    word_frequency = get_frequency_dict(word)
+
+    new_hand = {k: (v - word_frequency.get(k,
+                    hand[k]) if k in word else v) for k, v in hand.items()}
+
+    result = {k: v for k, v in new_hand.items() if v > 0}
+
+    return result
 
 #
 # Problem #3: Test word validity
