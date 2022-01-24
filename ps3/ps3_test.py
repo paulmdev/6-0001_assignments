@@ -13,6 +13,16 @@ class GetWordScoreTest(unittest.TestCase):
 
 
 class UpdateHandTests(unittest.TestCase):
+    def test_no_side_effects(self):
+        original_hand = {'a': 1, 'q': 1, 'l': 2, 'm': 1, 'u': 1, 'i': 1}
+        original_hand_copy = original_hand.copy()
+        word = "quail"
+
+        update_hand(original_hand_copy, word)
+
+        # Test it doesn't modify the hand
+        self.assertDictEqual(original_hand, original_hand_copy)
+
     def test_update_hand_1(self):
         original_hand = {'a': 1, 'q': 1, 'l': 2, 'm': 1, 'u': 1, 'i': 1}
         original_hand_copy = original_hand.copy()
@@ -22,9 +32,6 @@ class UpdateHandTests(unittest.TestCase):
         expected_new_hand = {'l': 1, 'm': 1}
 
         self.assertDictEqual(new_hand, expected_new_hand)
-
-        # Test it doesn't modify the hand
-        self.assertDictEqual(original_hand, original_hand_copy)
 
     def test_update_hand_2(self):
         original_hand = {'e': 1, 'v': 2, 'n': 1, 'i': 1, 'l': 2}
