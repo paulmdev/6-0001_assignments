@@ -1,6 +1,6 @@
 import unittest
 
-from ps3 import get_word_score, update_hand
+from ps3 import *
 
 
 class Tests(unittest.TestCase):
@@ -49,3 +49,61 @@ class UpdateHandTests(unittest.TestCase):
         self.assertDictEqual(new_hand, expected_new_hand)
 
         self.assertDictEqual(original_hand, original_hand_copy)
+
+
+class IsValidWordTests(unittest.TestCase):
+    def __init__(self, methodName: str = ...) -> None:
+        super().__init__(methodName)
+        self.word_list = load_words()
+
+    def test_no_side_effects(self):
+        word = "hello"
+        original_hand = get_frequency_dict(word)
+        original_hand_copy = original_hand.copy()
+
+        is_valid_word(
+            word, original_hand_copy, self.word_list)
+
+        self.assertDictEqual(original_hand, original_hand_copy)
+
+    def test_is_valid_word_1(self):
+        word = "hello"
+        hand = get_frequency_dict(word)
+
+        self.assertTrue(is_valid_word(
+            word, hand, self.word_list))
+
+    def test_is_valid_word_2(self):
+        word = "Rapture"
+        hand = {'r': 1, 'a': 3, 'p': 2, 'e': 1, 't': 1, 'u': 1}
+
+        self.assertFalse(is_valid_word(
+            word, hand, self.word_list))
+
+    def test_is_valid_word_3(self):
+        word = "honey"
+        hand = {'n': 1, 'h': 1, 'o': 1, 'y': 1, 'd': 1, 'w': 1, 'e': 2}
+
+        self.assertTrue(is_valid_word(
+            word, hand, self.word_list))
+
+    def test_is_valid_word_4(self):
+        word = "honey"
+        hand = {'r': 1, 'a': 3, 'p': 2, 't': 1, 'u': 2}
+
+        self.assertFalse(is_valid_word(
+            word, hand, self.word_list))
+
+    def test_is_valid_word_5(self):
+        word = "EVIL"
+        hand = {'e': 1, 'v': 2, 'n': 1, 'i': 1, 'l': 2}
+
+        self.assertTrue(is_valid_word(
+            word, hand, self.word_list))
+
+    def test_is_valid_word_6(self):
+        word = "Even"
+        hand = {'e': 1, 'v': 2, 'n': 1, 'i': 1, 'l': 2}
+
+        self.assertFalse(is_valid_word(
+            word, hand, self.word_list))
