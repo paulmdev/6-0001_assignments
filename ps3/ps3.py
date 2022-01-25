@@ -299,7 +299,7 @@ def play_hand(hand, word_list):
             "Enter word, or \"!!\" to indicate that you are finished: ")
 
         # If the input is two exclamation points:
-        if input == "!!":
+        if word == "!!":
 
             # End the game (break out of the loop)
             break
