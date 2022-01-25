@@ -232,9 +232,7 @@ def is_valid_word(word, hand, word_list):
 
         filter_list = list(filter(pattern.match, word_list))
 
-        if len(filter_list) == 0:
-            return False
-        return True
+        return len(filter_list) != 0
 
     is_word_in_word_list = word.lower() in word_list
 
