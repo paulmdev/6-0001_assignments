@@ -96,7 +96,7 @@ def get_word_score(word, n):
     returns: int >= 0
     """
 
-    sum_letters = sum([SCRABBLE_LETTER_VALUES[letter.lower()]
+    sum_letters = sum([SCRABBLE_LETTER_VALUES.get(letter.lower(), 0)
                       for letter in word])
 
     long_word_reward = 7 * len(word) - 3 * (n - len(word))
