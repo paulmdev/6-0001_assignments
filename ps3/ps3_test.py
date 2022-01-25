@@ -114,3 +114,33 @@ class IsValidWordTests(unittest.TestCase):
 
         self.assertFalse(is_valid_word(
             word, hand, self.word_list))
+
+
+class WildcardTests(unittest.TestCase):
+    def __init__(self, methodName: str = ...) -> None:
+        super().__init__(methodName)
+        self.word_list = load_words()
+
+    def test_wilcard_false_1(self):
+        hand = {'a': 1, 'r': 1, 'e': 1, 'j': 2, 'm': 1, '*': 1}
+        word = "e*m"
+
+        self.assertFalse(is_valid_word(word, hand, self.word_list))
+
+    def test_wilcard_false_2(self):
+        hand = {'n': 1, 'h': 1, '*': 1, 'y': 1, 'd': 1, 'w': 1, 'e': 2}
+        word = "honey"
+
+        self.assertFalse(is_valid_word(word, hand, self.word_list))
+
+    def test_wilcard_false_3(self):
+        hand = {'c': 1, 'o': 1, '*': 1, 'w': 1, 's': 1, 'z': 1, 'y': 2}
+        word = "c*wz"
+
+        self.assertFalse(is_valid_word(word, hand, self.word_list))
+
+    def test_wildcard_true(self):
+        hand = {'n': 1, 'h': 1, '*': 1, 'y': 1, 'd': 1, 'w': 1, 'e': 2}
+        word = "h*ney"
+
+        self.assertTrue(is_valid_word(word, hand, self.word_list))
