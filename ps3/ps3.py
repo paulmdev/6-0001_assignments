@@ -291,7 +291,8 @@ def play_hand(hand, word_list):
     # As long as there are still letters left in the hand:
     while hand != {}:
         # Display the hand
-        print(f"Current Hand: {display_hand(hand)}")
+        print("Current Hand: ", end=' ')
+        display_hand(hand)
 
         # Ask user for input
         word = input(
