@@ -287,35 +287,55 @@ def play_hand(hand, word_list):
 
     """
 
-    # BEGIN PSEUDOCODE <-- Remove this comment when you implement this function
     # Keep track of the total score
+    total_score = 0
 
     # As long as there are still letters left in the hand:
+    while hand != {}:
+        # Display the hand
+        print(f"Current Hand: {display_hand(hand)}")
 
-    # Display the hand
+        # Ask user for input
+        word = input(
+            "Enter word, or \"!!\" to indicate that you are finished: ")
 
-    # Ask user for input
+        # If the input is two exclamation points:
+        if input == "!!":
 
-    # If the input is two exclamation points:
+            # End the game (break out of the loop)
+            break
 
-    # End the game (break out of the loop)
+        # Otherwise (the input is not two exclamation points):
 
-    # Otherwise (the input is not two exclamation points):
+        # If the word is valid:
+        if is_valid_word(word, hand, word_list):
 
-    # If the word is valid:
+            # Tell the user how many points the word earned,
+            # and the updated total score
+            score = get_word_score(word, len(sum(hand.values())))
 
-    # Tell the user how many points the word earned,
-    # and the updated total score
+            total_score += score
 
-    # Otherwise (the word is not valid):
-    # Reject invalid word (print a message)
+            print(f"\"{word}\" earned {score} points. Total: {score} points")
 
-    # update the user's hand by removing the letters of their inputted word
+        # Otherwise (the word is not valid):
+        else:
+
+            # Reject invalid word (print a message)
+            print("That is not a valid word. Please choose another word.")
+
+        # update the user's hand by removing the letters of their inputted word
+        update_hand(hand, word)
 
     # Game is over (user entered '!!' or ran out of letters),
     # so tell user the total score
+    else:
+        print("Ran out of letters.", end=' ')
+
+    print(f"Total score: {total_score}")
 
     # Return the total score as result of function
+    return total_score
 
 
 #
