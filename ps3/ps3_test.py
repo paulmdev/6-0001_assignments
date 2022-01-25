@@ -144,3 +144,11 @@ class WildcardTests(unittest.TestCase):
         word = "h*ney"
 
         self.assertTrue(is_valid_word(word, hand, self.word_list))
+
+    def test_scores_with_wildcards(self):
+        words = {("h*ney", 7): 290, ("c*ws", 6): 176, ("wa*ls", 7): 203}
+
+        for (word, n) in words.keys():
+            score = get_word_score(word, n)
+
+            self.assertEqual(score, words[((word, n))])
