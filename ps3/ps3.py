@@ -347,7 +347,7 @@ def play_hand(hand, word_list):
 # procedure you will use to substitute a letter in a hand
 #
 
-def substitute_hand(hand, letter):
+def substitute_hand(hand: dict, letter):
     """ 
     Allow the user to replace all copies of one letter in the hand (chosen by user)
     with a new letter chosen from the VOWELS and CONSONANTS at random. The new letter
@@ -370,7 +370,22 @@ def substitute_hand(hand, letter):
     returns: dictionary (string -> int)
     """
 
-    pass  # TO DO... Remove this line when you implement this function
+    if letter not in hand.keys():
+        return hand
+
+    alphabeth = string.ascii_lowercase
+
+    for letter in hand.keys():
+        if letter in alphabeth:
+            alphabeth = alphabeth.replace(letter, "")
+
+    new_hand = hand.copy()
+
+    old_letter_count = new_hand.pop(letter)
+
+    new_hand[random.choice(alphabeth)] = old_letter_count
+
+    return new_hand
 
 
 def play_game(word_list):
