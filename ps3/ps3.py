@@ -7,7 +7,6 @@
 # Collaborators : <your collaborators>
 # Time spent    : <total time>
 
-from cgitb import reset
 import math
 import random
 import re
