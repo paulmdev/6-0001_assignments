@@ -10,6 +10,7 @@
 from cgitb import reset
 import math
 import random
+import re
 import string
 
 VOWELS = 'aeiou'
@@ -224,6 +225,16 @@ def is_valid_word(word, hand, word_list):
     word_list: list of lowercase strings
     returns: boolean
     """
+    if "*" in word:
+        regex = "^" + word.replace("*", "[aeiou]+") + "$"
+
+        pattern = re.compile(regex)
+
+        filter_list = list(filter(pattern.match, word_list))
+
+        if len(filter_list) == 0:
+            return False
+        return True
 
     is_word_in_word_list = word.lower() in word_list
 
